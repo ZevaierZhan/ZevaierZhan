@@ -3,6 +3,7 @@
 SSH_PORT=10022
 DISABLE_ROOT=true
 NEW_USER=zevaier
+PUB_PATH=https://github.com/ZevaierZhan/ZevaierZhan/blob/main/server/$NEW_USER.pub
 
 echo "修改SSH配置..."
 sudo sed -i "s/^#Port 22/Port $SSH_PORT/" /etc/ssh/sshd_config
@@ -18,6 +19,6 @@ sudo chmod 700 /home/$NEW_USER/.ssh
 
 # 3. 设置密钥认证
 echo "设置密钥认证..."
-sudo cp /root/.ssh/authorized_keys /home/$NEW_USER/.ssh/
+wget -O /home/$NEW_USER/.ssh/authorized_keys https://github.com/ZevaierZhan/ZevaierZhan/blob/main/server/$NEW_USER.pub
 sudo chown -R $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh
 sudo chmod 600 /home/$NEW_USER/.ssh/authorized_keys
